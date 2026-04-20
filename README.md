@@ -1,9 +1,10 @@
----
+
 title: Classwork-gen
 app_file: src/app.py
 sdk: gradio
 sdk_version: 6.12.0
----
+
+
 # ClassworkAi
 
 A RAG (Retrieval Augmented Generation) application that answers questions based on PDF documents using semantic search and AI.
@@ -101,3 +102,4 @@ Enter a question (or 'quit' to exit): What is the main topic of the documents?
 - **langchain-google-genai** — Google Gemini integration
 - **langchain** — RAG pipeline components
 - **PyMuPDF** — PDF loading
+
