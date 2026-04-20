@@ -8,6 +8,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from typing import List
 from config_loader import load_prompt,load_config
+import gradio as gr
 load_dotenv()
 config = load_config()
 prompt_config = load_prompt()
@@ -87,28 +88,26 @@ def main():
     """
     Main function to demonstrate Classwork AI
     """
-    try:
-        #initialize Classwork AI
-        classwork_ai = ClassWorkAi()
+    # Initialize Classwork AI
+    classwork_ai = ClassWorkAi()
+    
+    # Load documents 
+    sample_docs = load_documents()
+    print(f"Loaded {len(sample_docs)} documents")
 
-        #load documents 
-        sample_docs = load_documents()
-        print(f"Loaded {len(sample_docs)} documents")
-
-        classwork_ai.add_documents(sample_docs)
-        
-        done = False
-        while not done:
-            question = input("Enter a question (or 'quit' to exit): ")
-            if question.lower() == 'quit':
-                done = True
-            else:
-                result = classwork_ai.invoke(question)
-                print(result)
-    except Exception as e:
-        print(f"Error running Classwork AI: {e}")
-        # print("Make sure you have set up your .env file with at least one API key:")
-        # print("- GOOGLE_API_KEY (Google Gemini models)")
+    classwork_ai.add_documents(sample_docs)
+    
+    def chat(question):
+        return classwork_ai.invoke(question)
+    
+    # Launch Gradio interface
+    interface = gr.Interface(
+        fn=chat,
+        inputs=gr.Textbox(lines=2, placeholder="Ask a question about your class notes"),
+        outputs="text",
+        title="Classwork Ai Assistant"
+    )
+    interface.launch(share=True)
 
 if __name__ == "__main__":
     main()
