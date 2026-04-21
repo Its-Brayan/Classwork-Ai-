@@ -60,7 +60,7 @@ pip install -r requirements.txt
 Create a `.env` file in the project root:
 
 ```env
-GOOGLE_API_KEY=your_google_api_key_here
+GROQ_API_KEY=your_groq_api_key_here
 COLLECTION_NAME=classwork_collection
 EMBEDDING_MODEL=all-MiniLM-L6-v2
 ```
