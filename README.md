@@ -7,6 +7,7 @@ sdk_version: 6.12.0
 
 # ClassworkAi
 https://huggingface.co/spaces/its-Brayan/Classwork-gen
+
 A RAG (Retrieval Augmented Generation) application that answers questions based on PDF documents using semantic search and AI.
 
 ## Features
